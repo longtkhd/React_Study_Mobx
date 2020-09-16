@@ -1,5 +1,5 @@
 import { Form, Input, Button, Checkbox } from 'antd';
-import React from 'react'
+import React, { useState } from 'react'
 import styles from './style.less'
 import { observer, inject } from 'mobx-react'
 import { useStores } from '../../hooks/loginStore'
@@ -19,6 +19,8 @@ const tailLayout = {
 
 const Demo = observer(() => {
     const { loginStore } = useStores();
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('')
 
 
 
@@ -33,7 +35,7 @@ const Demo = observer(() => {
 
     const onFinish = values => {
         console.log('Success:', values);
-        loginStore.login()
+        loginStore.login(email, password)
         // loginStore.login()
     };
 
@@ -41,12 +43,14 @@ const Demo = observer(() => {
         console.log('Failed:', errorInfo);
     };
     const handleChangeEmail = e => {
-        // console.log(loginStore.loading)
-        loginStore.setUsername(e.target.value);
-        // console.log(e.target.value)
+        setEmail(e.target.value);
+
+        // loginStore.setUsername(e.target.value);
+
     }
     const handleChangePassword = e => {
-        loginStore.setPassword(e.target.value)
+        setPassword(e.target.value)
+        // loginStore.setPassword(e.target.value)
 
     }
 
@@ -62,10 +66,11 @@ const Demo = observer(() => {
                 initialValues={{ remember: true }}
                 onFinish={onFinish}
                 onFinishFailed={onFinishFailed}
-                onChange={handleChangeEmail}
+
 
             >
                 <Form.Item
+                    onChange={handleChangeEmail}
                     label="Username"
                     name="username"
                     rules={[{ required: true, message: 'Please input your username!' }]}

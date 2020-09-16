@@ -10,8 +10,8 @@ export class LoginStore {
     Token = null;
     errors = null;
     isLogged = false;
-    username = null;
-    password = '';
+    // username = null;
+    // password = '';
 
     setUsername(username) {
         LoginStore.username = username;
@@ -20,16 +20,20 @@ export class LoginStore {
         LoginStore.password = pass;
     }
 
-    login = async () => {
+    login = async (email, password) => {
 
         try {
 
             const res = await axios.post(`${BASE_URL}/user/login`, {
 
-                email: LoginStore.username,
-                password: LoginStore.password
+                email: email,
+                password: password
 
             })
+            if (res) {
+                localStorage.setItem('token', res.data.token);
+
+            }
 
 
         } catch (error) {
