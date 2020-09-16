@@ -1,8 +1,14 @@
 import { observable, action, decorate } from 'mobx';
 import axios from 'axios'
 import { BASE_URL } from '../urlConfig'
+// import { useHistory } from 'react-router-dom'
+import history from '../utils/history'
+
 
 export class LoginStore {
+
+
+
 
 
     loading = false;
@@ -31,6 +37,11 @@ export class LoginStore {
             })
             if (res) {
                 localStorage.setItem('token', res.data.token);
+                localStorage.setItem('isAuthenticated', true)
+                LoginStore.isLogged = true;
+                LoginStore.Token = res.data.token;
+                // history.push('/');
+
 
             }
 
