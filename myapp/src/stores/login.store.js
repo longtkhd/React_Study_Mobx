@@ -3,23 +3,34 @@ import { observable, action, decorate } from 'mobx';
 import axios from 'axios'
 import { BASE_URL } from '../urlConfig'
 
-export class LoginStore extends React.Component {
+export class LoginStore {
+
+
     loading = false;
     Token = null;
     errors = null;
     isLogged = false;
+    username = null;
+    password = '';
 
-    login = async (user) => {
+    setUsername(username) {
+        LoginStore.username = username;
+    }
+    setPassword(pass) {
+        LoginStore.password = pass;
+    }
+
+    login = async () => {
+
         try {
-            const res = await axios.post(BASE_URL, {
-                data: {
-                    email: user.email,
-                    password: user.password
-                }
+
+            const res = await axios.post(`${BASE_URL}/user/login`, {
+
+                email: LoginStore.username,
+                password: LoginStore.password
+
             })
-            if (res) {
-                console.log(res);
-            }
+
 
         } catch (error) {
             this.errors = 'invalied'
@@ -35,5 +46,7 @@ decorate(LoginStore, {
     Token: observable,
     errors: observable,
     isLogged: observable,
-    login: action
+    login: action,
+    setUsername: action,
+    setPassword: action
 })
