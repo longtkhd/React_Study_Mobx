@@ -8,9 +8,15 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "antd": "^4.6.4",
+    "axios": "^0.20.0",
     "craco-less": "^1.17.0",
+    "dotenv": "^8.2.0",
+    "mobx": "^5.15.6",
+    "mobx-react": "^6.3.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-mobx": "^0.0.4",
+    "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3"
   },
   "scripts": {
