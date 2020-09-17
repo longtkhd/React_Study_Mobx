@@ -6,11 +6,9 @@ import Login from './pages/Login'
 import PrivateRoute from './components/PrivateRouter'
 import Dashboard from './pages/Dashboard'
 import AdminPage from './pages/Admin/index'
-import Option1 from './pages/Option1'
 import Option2 from './pages/Option2'
-import storeContext from './stores'
 import { Provider } from 'mobx-react'
-import { LoginStore } from './stores/login.store'
+import LoginStore from './stores/login.store'
 import Member from './pages/MemberPage'
 
 const store = {

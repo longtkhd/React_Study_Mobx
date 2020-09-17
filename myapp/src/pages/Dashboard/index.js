@@ -23,7 +23,8 @@ const Dashboard = ({ children, LoginStore }) => {
 
                     <Menu.Item key="" ></Menu.Item>
                     <Menu.Item key="2" ></Menu.Item>
-                    <Menu.Item key="3">Home1</Menu.Item>
+                    <Menu.Item key="3" style={{ float: 'right' }}>Home1</Menu.Item>
+
                 </Menu>
 
 
@@ -31,7 +32,7 @@ const Dashboard = ({ children, LoginStore }) => {
 
             </Header>
             <Layout>
-                <Sider width={190} className="site-layout-background">
+                <Sider width={180} className="site-layout-background">
                     <Menu
                         mode="inline"
                         defaultSelectedKeys={['1']}
@@ -68,7 +69,13 @@ const Dashboard = ({ children, LoginStore }) => {
                         <Breadcrumb.Item>List</Breadcrumb.Item>
                         <Breadcrumb.Item>App</Breadcrumb.Item>
                     </Breadcrumb> */}
-                    <HeaderSearch />
+                    <div style={{ margin: '16px 0' }}>
+
+                        <HeaderSearch />
+
+
+                    </div>
+
                     <Content
                         className="site-layout-background"
                         style={{

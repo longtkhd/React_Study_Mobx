@@ -3,9 +3,7 @@ import axios from 'axios'
 import { BASE_URL } from '../urlConfig'
 import history from '../utils/history'
 // import { useHistory } from 'react-router-dom'
-
-
-export class LoginStore {
+class LoginStore {
 
 
 
@@ -73,3 +71,5 @@ decorate(LoginStore, {
     setUsername: action,
     setPassword: action
 })
+
+export default new LoginStore()

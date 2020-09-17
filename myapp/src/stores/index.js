@@ -1,8 +1,8 @@
-import React from 'react';
-import { LoginStore } from './login.store';
+// import React from 'react';
+// import { LoginStore } from './login.store';
 
 
-const storeContext = React.createContext({
-    loginStore: new LoginStore(),
-});
-export default storeContext;
+// const storeContext = React.createContext({
+//     loginStore: new LoginStore(),
+// });
+// export default storeContext;

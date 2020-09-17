@@ -1,8 +1,8 @@
 import { Form, Input, Button, Checkbox } from 'antd';
 import React, { useState, useEffect } from 'react'
-// import styles from './index.less'
-import { observer } from 'mobx-react'
-import { useStores } from '../../hooks/loginStore'
+import './index.less'
+import { observer, inject } from 'mobx-react'
+// import { useStores } from '../../hooks/loginStore'
 import { useHistory } from 'react-router-dom';
 
 const layout = {
@@ -19,11 +19,11 @@ const tailLayout = {
 
 
 
-const Login = observer((props) => {
+const Login = ({ LoginStore }) => {
     const history = useHistory();
 
 
-    const { loginStore } = useStores();
+    // const { loginStore } = useStores();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('')
 
@@ -49,7 +49,7 @@ const Login = observer((props) => {
 
     const onFinish = values => {
         console.log('Success:', values);
-        loginStore.login(email, password).then(() => history.push('/'))
+        LoginStore.login(email, password).then(() => history.push('/'))
         // loginStore.login()
     };
 
@@ -118,8 +118,9 @@ const Login = observer((props) => {
 
 
     );
-});
+};
 
 
 
-export default Login;
+// export default Login;
+export default inject('LoginStore')(observer(Login))
