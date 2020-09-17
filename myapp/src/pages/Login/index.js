@@ -6,7 +6,7 @@ import { useStores } from '../../hooks/loginStore'
 import { useHistory } from 'react-router-dom';
 
 const layout = {
-    labelCol: { span: 9 },
+    labelCol: { span: 8 },
     wrapperCol: { span: 7 },
 
 
