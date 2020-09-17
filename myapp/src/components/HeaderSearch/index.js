@@ -1,19 +1,33 @@
-import React from 'react';
 import { SearchOutlined } from '@ant-design/icons';
-// import { AutoComplete, Input } from 'antd';
+import { AutoComplete, Input } from 'antd';
+import useMergeValue from 'use-merge-value';
+import styles from './index.less';
+import React from 'react'
 
-const HeaderSearch = () => {
+
+const HeaderSearch = (props) => {
+    // const {
+    //     className,
+    //     defaultValue,
+    //     onVisibleChange,
+    //     placeholder,
+    //     open,
+    //     defaultOpen,
+    //     ...restProps
+    // } = props;
+
+
     return (
-        <div >
-            <SearchOutlined
-                key="Icon"
-                style={{
-                    cursor: 'pointer',
-                    float: 'right'
-                }}
-            ></SearchOutlined>
 
-        </div>
+        <div>
+            <Input.Search
+                placeholder="input search text"
+                onSearch={value => console.log(value)}
+                style={{ width: 200, float: 'right' }}
+            />
+        </div >
+
+
     );
 }
 

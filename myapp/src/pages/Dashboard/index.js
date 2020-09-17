@@ -1,12 +1,12 @@
 import React from 'react';
-import { Layout, Menu, Breadcrumb, Button } from 'antd';
+import { Layout, Menu } from 'antd';
 import { UserOutlined, LaptopOutlined, NotificationOutlined, LogoutOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom'
 import Logo from '../../assets/Logo.png'
 import './style.less'
 import { inject, observer } from 'mobx-react'
 import HeaderSearch from '../../components/HeaderSearch'
-// import AvatarDropdown from '../../components/AvatarDropdown'
+import AvatarDropdown from '../../components/AvatarDropdown'
 
 
 const { SubMenu } = Menu;
@@ -18,14 +18,16 @@ const Dashboard = ({ children, LoginStore }) => {
         <Layout>
             <Header className="header">
                 <div className="logo" />
-                <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']}>
-                    <img src={Logo} alt="" style={{ height: '50px' }} />
+                <div className="logo" />
 
-                    <Menu.Item key="" ></Menu.Item>
-                    <Menu.Item key="2" ></Menu.Item>
+                <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']}>
+                    <img src={Logo} alt="Logo" style={{ height: '50px' }} />
                     <Menu.Item key="3" style={{ float: 'right' }}>Home1</Menu.Item>
 
+
                 </Menu>
+
+
 
 
 
@@ -64,14 +66,19 @@ const Dashboard = ({ children, LoginStore }) => {
                     </Menu>
                 </Sider>
                 <Layout style={{ padding: '0 24px 24px' }}>
-                    {/* <Breadcrumb style={{ margin: '16px 0' }}>
-                        <Breadcrumb.Item>Home</Breadcrumb.Item>
-                        <Breadcrumb.Item>List</Breadcrumb.Item>
-                        <Breadcrumb.Item>App</Breadcrumb.Item>
-                    </Breadcrumb> */}
-                    <div style={{ margin: '16px 0' }}>
 
-                        <HeaderSearch />
+                    <div style={{ margin: '16px 0' }}>
+                        {/* <Breadcrumb>
+                            <Breadcrumb.Item>Home</Breadcrumb.Item>
+                            <Breadcrumb.Item>List</Breadcrumb.Item>
+                            <Breadcrumb.Item>App</Breadcrumb.Item>
+                        </Breadcrumb> */}
+
+                        <HeaderSearch
+
+                            placeholder="站内搜索"
+                            defaultValue="umi ui" />
+                        {/* <AvatarDropdown /> */}
 
 
                     </div>

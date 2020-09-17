@@ -1,18 +1,33 @@
-// import React from 'react';
-// import {  } from "module";
+import React from 'react';
+import { Avatar, Menu, Spin } from 'antd';
+import { LogoutOutlined, SettingOutlined, UserOutlined } from '@ant-design/icons';
 
-// const AvatarDropdown = () => {
-//     return (
-//         <div>
-//             <HeaderDropdown >
-//                 <span className={`${styles.action} ${styles.account}`}>
-//                     <Avatar size="small" alt="avatar" />
-//                     {/* <span className={`${styles.name} anticon`}>{currentUser.name}</span> */}
-//                 </span>
-//             </HeaderDropdown>
+const AvatarDropdown = () => {
+    return (
+        <div>
+            <Menu selectedKeys={[]} >
+                {(
+                    <Menu.Item key="center">
+                        <UserOutlined />
+            个人中心
+                    </Menu.Item>
+                )}
+                {(
+                    <Menu.Item key="settings">
+                        <SettingOutlined />
+            个人设置
+                    </Menu.Item>
+                )}
+                {<Menu.Divider />}
 
-//         </div>
-//     );
-// }
+                <Menu.Item key="logout">
+                    <LogoutOutlined />
+          退出登录
+        </Menu.Item>
+            </Menu>
 
-// export default AvatarDropdown;
+        </div>
+    );
+}
+
+export default AvatarDropdown;
