@@ -1,41 +1,60 @@
 import React from 'react';
-import { Layout, Menu, Breadcrumb } from 'antd';
-import { UserOutlined, LaptopOutlined, NotificationOutlined } from '@ant-design/icons';
-import { observer } from 'mobx-react';
+import { Layout, Menu, Breadcrumb, Button } from 'antd';
+import { UserOutlined, LaptopOutlined, NotificationOutlined, LogoutOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom'
+import Logo from '../../assets/Logo.png'
+import './style.less'
+import { inject, observer } from 'mobx-react'
+import HeaderSearch from '../../components/HeaderSearch'
+// import AvatarDropdown from '../../components/AvatarDropdown'
 
 
 const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout
 
-const Dashboard = observer(({ children }) => {
-    console.log(children)
+const Dashboard = ({ children, LoginStore }) => {
+    console.log(LoginStore)
     return (
         <Layout>
             <Header className="header">
                 <div className="logo" />
                 <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']}>
-                    <Menu.Item key="1">nav 1
-                       
-                    </Menu.Item>
-                    <Menu.Item key="2">nav 2</Menu.Item>
-                    <Menu.Item key="3">nav 3</Menu.Item>
+                    <img src={Logo} alt="" style={{ height: '50px' }} />
+
+                    <Menu.Item key="" ></Menu.Item>
+                    <Menu.Item key="2" ></Menu.Item>
+                    <Menu.Item key="3">Home1</Menu.Item>
+
+
+
+
+
+
+
+
+
                 </Menu>
+
+
+
+
             </Header>
             <Layout>
-                <Sider width={200} className="site-layout-background">
+                <Sider width={190} className="site-layout-background">
                     <Menu
                         mode="inline"
                         defaultSelectedKeys={['1']}
                         defaultOpenKeys={['sub1']}
                         style={{ height: '100%', borderRight: 0 }}
                     >
-                        <SubMenu key="sub1" icon={<UserOutlined />} title="subnav 1">
-                            <Menu.Item key="1">option1
-                            <Link to='/admin'></Link>
+                        <SubMenu key="sub1" icon={<UserOutlined />} title="Dashboard">
+                            <Menu.Item key="1">Alalyst
+                            <Link to='/admin/option1'></Link>
                             </Menu.Item>
-                            <Menu.Item key="2">option2</Menu.Item>
-                            <Menu.Item key="3">option3</Menu.Item>
+                            <Menu.Item key="2">Moniter
+                            <Link to='/admin/option2'></Link>
+                            </Menu.Item>
+                            <Menu.Item key="3">Workspace</Menu.Item>
                             <Menu.Item key="4">option4</Menu.Item>
                         </SubMenu>
                         <SubMenu key="sub2" icon={<LaptopOutlined />} title="subnav 2">
@@ -53,11 +72,12 @@ const Dashboard = observer(({ children }) => {
                     </Menu>
                 </Sider>
                 <Layout style={{ padding: '0 24px 24px' }}>
-                    <Breadcrumb style={{ margin: '16px 0' }}>
+                    {/* <Breadcrumb style={{ margin: '16px 0' }}>
                         <Breadcrumb.Item>Home</Breadcrumb.Item>
                         <Breadcrumb.Item>List</Breadcrumb.Item>
                         <Breadcrumb.Item>App</Breadcrumb.Item>
-                    </Breadcrumb>
+                    </Breadcrumb> */}
+                    <HeaderSearch />
                     <Content
                         className="site-layout-background"
                         style={{
@@ -72,6 +92,8 @@ const Dashboard = observer(({ children }) => {
             </Layout>
         </Layout>
     );
-})
+}
 
-export default Dashboard;
+
+
+export default inject('LoginStore')(observer(Dashboard))
