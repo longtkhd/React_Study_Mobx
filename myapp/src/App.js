@@ -4,6 +4,8 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Home from './pages/Home'
 import Login from './pages/Login'
 import PrivateRoute from './components/PrivateRouter'
+import Dashboard from './pages/Dashboard'
+import AdminPage from './pages/Admin/index'
 // import NormalLoginForm from './pages/Login'
 
 const App = () => (
@@ -12,7 +14,16 @@ const App = () => (
       <Switch>
 
         <Route path="/login" exact component={Login} />
-        <PrivateRoute exact path="/" component={Home} />
+        <Route exact path="/" component={Home} />
+        {/* <PrivateRoute path="/admin" exact component={Dashboard} /> */}
+        <PrivateRoute
+          exact
+          layout={Dashboard}
+          path="/admin"
+          component={AdminPage}
+        // title='AdminPage'
+        />
+
 
       </Switch>
     </React.Fragment>

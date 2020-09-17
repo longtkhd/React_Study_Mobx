@@ -1,6 +1,6 @@
 import { Form, Input, Button, Checkbox } from 'antd';
 import React, { useState, useEffect } from 'react'
-import styles from './index.less'
+// import styles from './index.less'
 import { observer } from 'mobx-react'
 import { useStores } from '../../hooks/loginStore'
 import { useHistory } from 'react-router-dom';

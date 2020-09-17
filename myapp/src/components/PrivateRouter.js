@@ -2,13 +2,15 @@ import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 
 
-const ProtectedRoute = ({ component: Component, ...rest }) => {
+const ProtectedRoute = ({ component: Component, chidren, layout: Layout, props, ...rest }) => {
     return (
         <Route
             {...rest}
             render={({ location }) =>
                 localStorage.getItem('isAuthenticated') ? (
-                    <Component />
+                    <Layout >
+                        <Component />
+                    </Layout>
                 ) : (
                         <Redirect
                             to={{
