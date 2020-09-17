@@ -11,6 +11,7 @@ import Option2 from './pages/Option2'
 import storeContext from './stores'
 import { Provider } from 'mobx-react'
 import { LoginStore } from './stores/login.store'
+import Member from './pages/MemberPage'
 
 const store = {
   LoginStore
@@ -37,7 +38,7 @@ const App = () => (
             exact
             layout={Dashboard}
             path="/admin/option1"
-            component={Option1}
+            component={Member}
 
           />
           <PrivateRoute

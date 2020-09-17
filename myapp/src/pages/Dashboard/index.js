@@ -24,15 +24,6 @@ const Dashboard = ({ children, LoginStore }) => {
                     <Menu.Item key="" ></Menu.Item>
                     <Menu.Item key="2" ></Menu.Item>
                     <Menu.Item key="3">Home1</Menu.Item>
-
-
-
-
-
-
-
-
-
                 </Menu>
 
 
