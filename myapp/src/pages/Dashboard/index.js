@@ -6,8 +6,6 @@ import Logo from '../../assets/Logo.png'
 import './style.less'
 import { inject, observer } from 'mobx-react'
 import HeaderSearch from '../../components/HeaderSearch'
-import AvatarDropdown from '../../components/AvatarDropdown'
-import { Trans, withI18n } from '@lingui/react'
 import { useHistory } from 'react-router-dom'
 
 const { SubMenu } = Menu;
@@ -22,14 +20,14 @@ const Dashboard = ({ children, LoginStore }) => {
         history.push('/login')
     }
     const rightContent = [
-        <Menu mode="horizontal" key='user' onClick={handleClickMenu}>
+        <Menu mode="horizontal" key='user' onClick={handleClickMenu} className="Account">
             <SubMenu className="submenu"
                 title={
                     <Fragment>
                         <span style={{ color: 'red', marginRight: 4 }}>
                             Hi,
                         </span>
-                        <span style={{ color: 'black' }}> Long</span>
+                        <span style={{ color: 'white' }}> Long</span>
 
                         <Avatar style={{ marginLeft: 8 }} src={Logo} />
                     </Fragment>
@@ -87,36 +85,26 @@ const Dashboard = ({ children, LoginStore }) => {
                 </Sider>
                 <Layout style={{ padding: '0 24px 24px' }}>
 
-                    {/* <div style={{ margin: '16px 0' }}> */}
-                    {/* <Breadcrumb>
+                    <div style={{ margin: '16px 0' }}>
+                        <HeaderSearch />
+                        {/* <Breadcrumb>
                             <Breadcrumb.Item>Home</Breadcrumb.Item>
                             <Breadcrumb.Item>List</Breadcrumb.Item>
                             <Breadcrumb.Item>App</Breadcrumb.Item>
                         </Breadcrumb> */}
 
-                    {/* <AvatarDropdown /> */}
-
-                    {/* <Menu>
-                            <Menu.SubMenu>
-                                <Menu.Item>
-                                    <Avatar
-                                        size="small"
-                                        style={{ marginRight: 8 }}
-                                        src={Logo}
-                                    />
-                                </Menu.Item>
-                            </Menu.SubMenu>
-                        </Menu> */}
+                        {/* <AvatarDropdown /> */}
 
 
 
-                    {/* </div> */}
+
+                    </div>
 
                     <Content
                         className="site-layout-background"
                         style={{
                             padding: 24,
-                            margin: 0,
+                            margin: '30px 0',
                             minHeight: 280,
                         }}
                     >

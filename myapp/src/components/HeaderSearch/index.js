@@ -21,7 +21,7 @@ const HeaderSearch = (props) => {
 
         <div>
             <Input.Search
-                placeholder="input search text"
+                placeholder="search "
                 onSearch={value => console.log(value)}
                 style={{ width: 200, float: 'right' }}
             />
