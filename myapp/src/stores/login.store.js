@@ -51,11 +51,10 @@ class LoginStore {
     }
 
     logout = async () => {
-        localStorage.removeItem('token');
-        localStorage.setItem('isAuthenticated', false)
+        localStorage.clear();
         LoginStore.isLogged = false;
         LoginStore.Token = null;
-        await history.push('/login')
+
     }
 
 
@@ -68,6 +67,7 @@ decorate(LoginStore, {
     errors: observable,
     isLogged: observable,
     login: action,
+    logout: action,
     setUsername: action,
     setPassword: action
 })

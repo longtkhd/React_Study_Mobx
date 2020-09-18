@@ -30,12 +30,12 @@ const App = () => (
             exact
             layout={Dashboard}
             path="/admin"
-            component={AdminPage}
+            component={Member}
           />
           <PrivateRoute
             exact
             layout={Dashboard}
-            path="/admin/option1"
+            path="/admin/member"
             component={Member}
 
           />

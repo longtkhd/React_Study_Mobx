@@ -10,6 +10,7 @@ module.exports = {
                         modifyVars: {
                             '@primary-color': '#1890ff',
                             '@font-size-base': '13px',
+
                         },
 
                         javascriptEnabled: true,

@@ -1,5 +1,5 @@
-import React from 'react';
-import { Layout, Menu } from 'antd';
+import React, { Fragment, useEffect } from 'react';
+import { Layout, Menu, Avatar } from 'antd';
 import { UserOutlined, LaptopOutlined, NotificationOutlined, LogoutOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom'
 import Logo from '../../assets/Logo.png'
@@ -7,26 +7,46 @@ import './style.less'
 import { inject, observer } from 'mobx-react'
 import HeaderSearch from '../../components/HeaderSearch'
 import AvatarDropdown from '../../components/AvatarDropdown'
-
+import { Trans, withI18n } from '@lingui/react'
+import { useHistory } from 'react-router-dom'
 
 const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout
 
 const Dashboard = ({ children, LoginStore }) => {
-    console.log(LoginStore)
+    const history = useHistory();
+
+
+    const handleClickMenu = e => {
+        e.key === 'SignOut' && LoginStore.logout();
+        history.push('/login')
+    }
+    const rightContent = [
+        <Menu mode="horizontal" key='user' onClick={handleClickMenu}>
+            <SubMenu className="submenu"
+                title={
+                    <Fragment>
+                        <span style={{ color: 'red', marginRight: 4 }}>
+                            Hi,
+                        </span>
+                        <span style={{ color: 'black' }}> Long</span>
+
+                        <Avatar style={{ marginLeft: 8 }} src={Logo} />
+                    </Fragment>
+                }
+            >
+                <Menu.Item key="SignOut">
+                    <span style={{ color: 'red' }}>Sign out</span>
+                </Menu.Item>
+            </SubMenu>
+        </Menu>,
+    ]
+
     return (
         <Layout>
             <Header className="header">
-                <div className="logo" />
-                <div className="logo" />
-
-                <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']}>
-                    <img src={Logo} alt="Logo" style={{ height: '50px' }} />
-                    <Menu.Item key="3" style={{ float: 'right' }}>Home1</Menu.Item>
-
-
-                </Menu>
-
+                <img className="logo" src={Logo} height='50px' />
+                <div style={{ float: 'right' }} className="userLogout">{rightContent}</div>
 
 
 
@@ -43,7 +63,7 @@ const Dashboard = ({ children, LoginStore }) => {
                     >
                         <SubMenu key="sub1" icon={<UserOutlined />} title="Dashboard">
                             <Menu.Item key="1">Alalyst
-                            <Link to='/admin/option1'></Link>
+                            <Link to='/admin/member'></Link>
                             </Menu.Item>
                             <Menu.Item key="2">Moniter
                             <Link to='/admin/option2'></Link>
@@ -67,21 +87,30 @@ const Dashboard = ({ children, LoginStore }) => {
                 </Sider>
                 <Layout style={{ padding: '0 24px 24px' }}>
 
-                    <div style={{ margin: '16px 0' }}>
-                        {/* <Breadcrumb>
+                    {/* <div style={{ margin: '16px 0' }}> */}
+                    {/* <Breadcrumb>
                             <Breadcrumb.Item>Home</Breadcrumb.Item>
                             <Breadcrumb.Item>List</Breadcrumb.Item>
                             <Breadcrumb.Item>App</Breadcrumb.Item>
                         </Breadcrumb> */}
 
-                        <HeaderSearch
+                    {/* <AvatarDropdown /> */}
 
-                            placeholder="站内搜索"
-                            defaultValue="umi ui" />
-                        {/* <AvatarDropdown /> */}
+                    {/* <Menu>
+                            <Menu.SubMenu>
+                                <Menu.Item>
+                                    <Avatar
+                                        size="small"
+                                        style={{ marginRight: 8 }}
+                                        src={Logo}
+                                    />
+                                </Menu.Item>
+                            </Menu.SubMenu>
+                        </Menu> */}
 
 
-                    </div>
+
+                    {/* </div> */}
 
                     <Content
                         className="site-layout-background"
@@ -95,10 +124,11 @@ const Dashboard = ({ children, LoginStore }) => {
                     </Content>
                 </Layout>
             </Layout>
-        </Layout>
+        </Layout >
     );
 }
 
 
-
 export default inject('LoginStore')(observer(Dashboard))
+
+
