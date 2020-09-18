@@ -11,7 +11,8 @@ import { useHistory } from 'react-router-dom'
 const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout
 
-const Dashboard = ({ children, LoginStore }) => {
+const Dashboard = ({ children, LoginStore, setCommonStore }) => {
+
     const history = useHistory();
 
 
@@ -27,7 +28,7 @@ const Dashboard = ({ children, LoginStore }) => {
                         <span style={{ color: 'red', marginRight: 4 }}>
                             Hi,
                         </span>
-                        <span style={{ color: 'white' }}> Long</span>
+                        <span style={{ color: 'white' }}> {setCommonStore.account}</span>
 
                         <Avatar style={{ marginLeft: 8 }} src={Logo} />
                     </Fragment>
@@ -60,7 +61,7 @@ const Dashboard = ({ children, LoginStore }) => {
                         style={{ height: '100%', borderRight: 0 }}
                     >
                         <SubMenu key="sub1" icon={<UserOutlined />} title="Dashboard">
-                            <Menu.Item key="1">Alalyst
+                            <Menu.Item key="1">Member
                             <Link to='/admin/member'></Link>
                             </Menu.Item>
                             <Menu.Item key="2">Moniter
@@ -117,6 +118,6 @@ const Dashboard = ({ children, LoginStore }) => {
 }
 
 
-export default inject('LoginStore')(observer(Dashboard))
+export default inject('LoginStore', 'setCommonStore')(observer(Dashboard))
 
 

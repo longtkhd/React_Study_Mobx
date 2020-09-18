@@ -9,13 +9,16 @@ import AdminPage from './pages/Admin/index'
 import Option2 from './pages/Option2'
 import { Provider } from 'mobx-react'
 import LoginStore from './stores/login.store'
+import MemberStore from './stores/memberStore'
+import setCommonStore from './stores/setCommon'
 import Member from './pages/MemberPage'
 
 const store = {
-  LoginStore
+  LoginStore,
+  MemberStore,
+  setCommonStore
 
 }
-// import NormalLoginForm from './pages/Login'
 
 const App = () => (
   <Provider  {...store}>

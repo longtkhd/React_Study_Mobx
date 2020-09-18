@@ -1,7 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Table, Tag, Space } from 'antd'
+import { observer, inject } from 'mobx-react'
 
-const Member = () => {
+const Member = ({ MemberStore }) => {
+
+    useEffect(() => {
+        MemberStore.getAllUser();
+        console.log(MemberStore.users)
+
+
+
+    }, []);
     const columns = [
         {
             title: 'Name',
@@ -75,8 +84,8 @@ const Member = () => {
         },
     ];
     return (
-        <Table columns={columns} dataSource={data} />
+        < Table columns={columns} dataSource={data} />
     );
 }
 
-export default Member;
+export default inject('MemberStore')(observer(Member));

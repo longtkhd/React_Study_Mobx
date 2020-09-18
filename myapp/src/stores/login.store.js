@@ -1,19 +1,13 @@
 import { observable, action, decorate } from 'mobx';
 import axios from 'axios'
 import { BASE_URL } from '../urlConfig'
-import history from '../utils/history'
-// import { useHistory } from 'react-router-dom'
+import setCommonStore from './setCommon'
 class LoginStore {
-
-
-
-
-
-
     loading = false;
     Token = null;
     errors = null;
     isLogged = false;
+    account = null;
     // username = null;
     // password = '';
 
@@ -37,9 +31,12 @@ class LoginStore {
             if (res) {
                 localStorage.setItem('token', res.data.token);
                 localStorage.setItem('isAuthenticated', true)
-                LoginStore.isLogged = true;
-                LoginStore.Token = res.data.token;
-                // history.push('/');
+                // this.isLogged = true;
+                // this.Token = res.data.token;
+                // this.account = email;
+                setCommonStore.setAccount(email)
+
+
 
 
             }
@@ -69,7 +66,8 @@ decorate(LoginStore, {
     login: action,
     logout: action,
     setUsername: action,
-    setPassword: action
+    setPassword: action,
+    account: observable,
 })
 
 export default new LoginStore()

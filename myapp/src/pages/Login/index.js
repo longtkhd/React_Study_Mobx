@@ -49,7 +49,7 @@ const Login = ({ LoginStore }) => {
 
     const onFinish = values => {
         console.log('Success:', values);
-        LoginStore.login(email, password).then(() => history.push('/'))
+        LoginStore.login(email, password).then(() => history.push('/admin'))
         // loginStore.login()
     };
 
