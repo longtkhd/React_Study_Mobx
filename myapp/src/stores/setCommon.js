@@ -1,15 +1,17 @@
 import { observable, action, decorate } from 'mobx'
 
 class setCommonStore {
-    users = [];
+    users = []
     account = 'admin'
     setUsers(user) {
-        this.users = user;
+        setCommonStore.users = user;
+
     }
 
-    setAccount(account) {
+    setCurrentUser(account) {
         this.account = account;
     }
+
 
 }
 

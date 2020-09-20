@@ -1,1 +1,1 @@
-export const BASE_URL = 'https://api.hithaui.com';
+export const BASE_URL = 'https://longtkhdapi.herokuapp.com';

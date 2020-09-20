@@ -11,12 +11,12 @@ class LoginStore {
     // username = null;
     // password = '';
 
-    setUsername(username) {
-        LoginStore.username = username;
-    }
-    setPassword(pass) {
-        LoginStore.password = pass;
-    }
+    // setUsername(username) {
+    //     LoginStore.username = username;
+    // }
+    // setPassword(pass) {
+    //     LoginStore.password = pass;
+    // }
 
     login = async (email, password) => {
 
@@ -34,7 +34,7 @@ class LoginStore {
                 // this.isLogged = true;
                 // this.Token = res.data.token;
                 // this.account = email;
-                setCommonStore.setAccount(email)
+                setCommonStore.setCurrentUser(email)
 
 
 

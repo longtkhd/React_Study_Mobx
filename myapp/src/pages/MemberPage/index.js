@@ -1,16 +1,27 @@
 import React, { useEffect } from 'react';
 import { Table, Tag, Space } from 'antd'
 import { observer, inject } from 'mobx-react'
+import { toJS } from 'mobx';
 
 const Member = ({ MemberStore }) => {
 
     useEffect(() => {
         MemberStore.getAllUser();
-        console.log(MemberStore.users)
+
+
+
 
 
 
     }, []);
+
+
+
+
+
+
+
+
     const columns = [
         {
             title: 'Name',
@@ -84,6 +95,7 @@ const Member = ({ MemberStore }) => {
         },
     ];
     return (
+
         < Table columns={columns} dataSource={data} />
     );
 }

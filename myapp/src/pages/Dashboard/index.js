@@ -7,13 +7,16 @@ import './style.less'
 import { inject, observer } from 'mobx-react'
 import HeaderSearch from '../../components/HeaderSearch'
 import { useHistory } from 'react-router-dom'
+import { toJS } from 'mobx'
 
 const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout
 
-const Dashboard = ({ children, LoginStore, setCommonStore }) => {
+const Dashboard = ({ children, LoginStore, setCommonStore, MemberStore }) => {
+    // console.log(setCommonStore.users)
 
     const history = useHistory();
+
 
 
     const handleClickMenu = e => {
@@ -118,6 +121,6 @@ const Dashboard = ({ children, LoginStore, setCommonStore }) => {
 }
 
 
-export default inject('LoginStore', 'setCommonStore')(observer(Dashboard))
+export default inject('LoginStore', 'setCommonStore', 'MemberStore')(observer(Dashboard))
 
 
