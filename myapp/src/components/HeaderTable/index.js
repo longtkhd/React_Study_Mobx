@@ -1,5 +1,6 @@
 import React from 'react';
 import HeaderSearch from '../HeaderSearch'
+import ModalCreate from '../ModalCreate'
 import { Button, Form, Row, Col, DatePicker } from 'antd'
 import './style.less'
 const { RangePicker } = DatePicker
@@ -45,9 +46,7 @@ const HeaderTable = () => {
                     >
                         <Row type="flex" style={{ float: 'right' }}>
 
-                            <Button type="ghost" >
-                                <span>Create</span>
-                            </Button>
+                            <ModalCreate />
                         </Row>
                     </Col>
 

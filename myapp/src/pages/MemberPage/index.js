@@ -4,6 +4,8 @@ import { observer, inject } from 'mobx-react'
 import { toJS } from 'mobx';
 import HeaderTable from '../../components/HeaderTable'
 
+
+
 const Member = ({ MemberStore }) => {
 
     useEffect(() => {
