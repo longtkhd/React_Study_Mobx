@@ -6,13 +6,13 @@ import { observer, inject } from 'mobx-react'
 import { useHistory } from 'react-router-dom';
 
 const layout = {
-    labelCol: { span: 8 },
-    wrapperCol: { span: 7 },
+    labelCol: { span: 9 },
+    wrapperCol: { span: 8 },
 
 
 };
 const tailLayout = {
-    wrapperCol: { offset: 9, span: 10 },
+    wrapperCol: { offset: 8, span: 10 },
 };
 
 
@@ -83,6 +83,7 @@ const Login = ({ LoginStore }) => {
                 initialValues={{ remember: true }}
                 onFinish={onFinish}
                 onFinishFailed={onFinishFailed}
+                className="login-form"
 
 
             >
@@ -104,14 +105,22 @@ const Login = ({ LoginStore }) => {
                     <Input.Password />
                 </Form.Item>
 
-                <Form.Item {...tailLayout} name="remember" valuePropName="checked">
-                    <Checkbox>Remember me</Checkbox>
+                <Form.Item  {...tailLayout}>
+                    <Form.Item name="remember" valuePropName="checked" noStyle>
+                        <Checkbox>Remember me</Checkbox>
+                    </Form.Item>
+
+                    <a className="login-form-forgot" href="">
+                        Forgot password
+        </a>
                 </Form.Item>
 
-                <Form.Item {...tailLayout}>
-                    <Button type="primary" htmlType="submit">
-                        Submit
+
+                <Form.Item  {...tailLayout}>
+                    <Button type="primary" htmlType="submit" className="login-form-button" style={{ marginRight: '40px' }}>
+                        Log in
         </Button>
+         Or <a href="">register now!</a>
                 </Form.Item>
             </Form>
         </div>

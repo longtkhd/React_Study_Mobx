@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
-import { Table, Tag, Space } from 'antd'
+import { Table, Tag, Space, Button, Row, Col, Form } from 'antd'
 import { observer, inject } from 'mobx-react'
 import { toJS } from 'mobx';
+import HeaderTable from '../../components/HeaderTable'
 
 const Member = ({ MemberStore }) => {
 
@@ -13,7 +14,7 @@ const Member = ({ MemberStore }) => {
 
 
 
-    }, []);
+    }, [MemberStore]);
 
 
 
@@ -25,14 +26,14 @@ const Member = ({ MemberStore }) => {
     const columns = [
         {
             title: 'Name',
-            dataIndex: 'name',
+            dataIndex: 'fullName',
             key: 'name',
             render: text => <a>{text}</a>,
         },
         {
-            title: 'Age',
-            dataIndex: 'age',
-            key: 'age',
+            title: 'Phone',
+            dataIndex: 'phone',
+            key: 'phone',
         },
         {
             title: 'Address',
@@ -40,63 +41,48 @@ const Member = ({ MemberStore }) => {
             key: 'address',
         },
         {
-            title: 'Tags',
-            key: 'tags',
-            dataIndex: 'tags',
-            render: tags => (
-                <>
-                    {tags.map(tag => {
-                        let color = tag.length > 5 ? 'geekblue' : 'green';
-                        if (tag === 'loser') {
-                            color = 'volcano';
-                        }
-                        return (
-                            <Tag color={color} key={tag}>
-                                {tag.toUpperCase()}
-                            </Tag>
-                        );
-                    })}
-                </>
+            title: 'schoolYear',
+            dataIndex: 'schoolYear',
+            key: 'address',
+        },
+        {
+            title: 'isActive',
+            key: 'isActive',
+            // dataIndex: 'schoolYear',
+            render: (text, data) => (
+                <Space size="middle">
+                    <a>{data.isActive.toString()} </a>
+                    {/* <a>Delete</a> */}
+                </Space>
             ),
+
+
+
         },
         {
             title: 'Action',
             key: 'action',
             render: (text, record) => (
                 <Space size="middle">
-                    <a>Invite {record.name}</a>
+                    <a>Invite </a>
                     <a>Delete</a>
                 </Space>
             ),
         },
     ];
 
-    const data = [
-        {
-            key: '1',
-            name: 'John Brown',
-            age: 32,
-            address: 'New York No. 1 Lake Park',
-            tags: ['nice', 'developer'],
-        },
-        {
-            key: '2',
-            name: 'Jim Green',
-            age: 42,
-            address: 'London No. 1 Lake Park',
-            tags: ['loser'],
-        },
-        {
-            key: '3',
-            name: 'Joe Black',
-            age: 32,
-            address: 'Sidney No. 1 Lake Park',
-            tags: ['cool', 'teacher'],
-        },
-    ];
-    return (
 
-        < Table columns={columns} dataSource={data} />
+
+    const data = toJS(MemberStore.users);
+
+    return (
+        <div className="Table">
+            <HeaderTable />
+            < Table columns={columns} dataSource={data} rowKey="_id" />
+
+
+        </div >
+
     );
 }
 

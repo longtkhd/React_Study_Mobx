@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect } from 'react';
-import { Layout, Menu, Avatar } from 'antd';
+import { Layout, Menu, Avatar, Breadcrumb } from 'antd';
 import { UserOutlined, LaptopOutlined, NotificationOutlined, LogoutOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom'
 import Logo from '../../assets/Logo.png'
@@ -90,12 +90,12 @@ const Dashboard = ({ children, LoginStore, setCommonStore, MemberStore }) => {
                 <Layout style={{ padding: '0 24px 24px' }}>
 
                     <div style={{ margin: '16px 0' }}>
-                        <HeaderSearch />
-                        {/* <Breadcrumb>
+                        {/* <HeaderSearch /> */}
+                        <Breadcrumb>
                             <Breadcrumb.Item>Home</Breadcrumb.Item>
                             <Breadcrumb.Item>List</Breadcrumb.Item>
-                            <Breadcrumb.Item>App</Breadcrumb.Item>
-                        </Breadcrumb> */}
+                            <Breadcrumb.Item>Member</Breadcrumb.Item>
+                        </Breadcrumb>
 
                         {/* <AvatarDropdown /> */}
 
