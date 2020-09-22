@@ -32,7 +32,7 @@ const ModalCreate = () => {
 
     return (
         <div>
-            <Button type="ghost" onClick={showModal}>
+            <Button type="ghost" onClick={showModal} >
                 Create
         </Button>
             <Modal

@@ -26,7 +26,7 @@ const HeaderTable = () => {
 
 
                     <Col {...TwoColProps}
-                        xl={{ span: 22 }}
+                        xl={{ span: 21 }}
                         md={{ span: 15 }}
                         sm={{ span: 15 }}>
                         <Row type="flex" style={{ float: 'right' }}>
@@ -38,13 +38,13 @@ const HeaderTable = () => {
 
                     <Col
                         {...TwoColProps}
-                        xl={{ span: 1 }}
-                        md={{ span: 3 }}
+                        xl={{ span: 2 }}
+                        md={{ span: 2 }}
                         sm={{ span: 5 }}
-                        style={{ margin: '0 10px' }}
+
 
                     >
-                        <Row type="flex" style={{ float: 'right' }}>
+                        <Row type="flex" >
 
                             <ModalCreate />
                         </Row>
