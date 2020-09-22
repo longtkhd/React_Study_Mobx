@@ -8,7 +8,13 @@ class MemberStore {
     loading = false;
     success = false;
     error = false;
-    users = []
+    users = [];
+    isEdit = false;
+
+    setIsEdit = () => {
+        this.isEdit = true;
+    }
+
 
     getAllUser = async () => {
         try {
@@ -19,12 +25,7 @@ class MemberStore {
                 },
 
             })
-
-
             // console.log(toJS(this.users)
-
-
-
             if (res) {
                 this.users = res.data.users;
                 console.log(toJS(this.users))
@@ -62,21 +63,11 @@ class MemberStore {
 
 
             const res = await axios(config
-
-
-
-
-
-
-
             );
             if (res) {
                 this.getAllUser();
                 console.log(res)
             }
-
-
-
         } catch (e) {
             MemberStore.error = 'Oops , Something is wrong !!!'
 
@@ -89,8 +80,10 @@ decorate(MemberStore, {
     loading: observable,
     success: observable,
     error: observable,
+    isEdit: observable,
     getAllUser: action,
     CreateUser: action,
+    setIsEdit: action
 })
 
 export default new MemberStore()

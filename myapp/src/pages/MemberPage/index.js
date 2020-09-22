@@ -1,15 +1,37 @@
 import React, { useEffect } from 'react';
-import { Table, Tag, Space, Button, Row, Col, Form } from 'antd'
+import { Table, Tag, Space, Button, Row, Col, Form, Modal } from 'antd'
 import { observer, inject } from 'mobx-react'
 import { toJS } from 'mobx';
 import HeaderTable from '../../components/HeaderTable'
+import DropOption from '../../components/DropOption'
+import ModalCreate from '../../components/ModalCreate'
+const { confirm } = Modal
 
 
 
-const Member = ({ MemberStore }) => {
+const Member = ({ MemberStore, ...props }) => {
+    const handleMenuClick = (record, e) => {
+        // const { onDeleteItem, onEditItem, i18n } = this.props
+
+        if (e.key === '1') {
+            //   onEditItem(record)
+            console.log('update')
+        } else if (e.key === '2') {
+            confirm({
+                title: `Are you sure delete this record?`,
+                onOk() {
+                    // onDeleteItem(record.id)
+                    console.log(record._id)
+                },
+            })
+        }
+    }
+    const data = toJS(MemberStore.users);
+
 
     useEffect(() => {
         MemberStore.getAllUser();
+
 
 
 
@@ -61,26 +83,43 @@ const Member = ({ MemberStore }) => {
 
 
         },
+        // {
+        //     title: 'Action',
+        //     key: 'action',
+        //     render: (text, record) => (
+        //         <Space size="middle">
+        //             <a>Profile </a>
+        //             <a>Delete</a>
+        //             <ModalCreate isEdit={true} EditData={data} />
+        //         </Space>
+        //     ),
+        // },
         {
-            title: 'Action',
-            key: 'action',
-            render: (text, record) => (
-                <Space size="middle">
-                    <a>Profile </a>
-                    <a>Delete</a>
-                </Space>
-            ),
+            title: <span>Action</span>,
+            key: 'operation',
+            fixed: 'right',
+            render: (text, record) => {
+                return (
+                    <DropOption
+                        onMenuClick={e => handleMenuClick(record, e)}
+                        menuOptions={[
+                            { key: '1', name: `Update` },
+                            { key: '2', name: `Delete` },
+                        ]}
+                    />
+                )
+            },
         },
     ];
 
 
 
-    const data = toJS(MemberStore.users);
+
 
     return (
         <div className="Table">
             <HeaderTable />
-            < Table columns={columns} dataSource={data} rowKey="_id" />
+            < Table columns={columns} dataSource={data} rowKey={record => record._id} />
 
 
         </div >

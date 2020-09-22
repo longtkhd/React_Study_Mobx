@@ -6,7 +6,7 @@ import { UploadOutlined } from '@ant-design/icons';
 import { observer, inject } from 'mobx-react'
 
 
-const ModalCreate = ({ MemberStore }) => {
+const ModalCreate = ({ MemberStore, ...props }) => {
     const [fullName, setFullName] = useState('');
     const [email, setEmail] = useState('');
     const [phone, setPhone] = useState('');
@@ -15,6 +15,23 @@ const ModalCreate = ({ MemberStore }) => {
     const [role, setRole] = useState('');
     const [gender, setGender] = useState('');
     const [dob, setDob] = useState('');
+
+
+    // useEffect(() => {
+
+    //     if (props.isEdit) {
+
+
+    //         setFullName(props.EditData.fullName);
+    //         setEmail(props.EditData.email);
+    //         setPhone(props.EditData.phone);
+    //         setAddress(props.EditData.address);
+    //         setStudenCode(props.EditData.studentCode);
+    //         setGender(props.EditData.gender);
+    //         setDob(props.EditData.dob);
+    //     }
+
+    // }, [])
 
 
 
@@ -31,6 +48,9 @@ const ModalCreate = ({ MemberStore }) => {
 
 
     const showModal = () => {
+        console.log(props.isEdit)
+        console.log(props.EditData)
+
         setVisible(true);
     };
 
@@ -81,10 +101,10 @@ const ModalCreate = ({ MemberStore }) => {
                     layout="horizontal"
                 >
                     <Form.Item label="FullName">
-                        <Input onChange={e => setFullName(e.target.value)} />
+                        <Input onChange={e => setFullName(e.target.value)} value={fullName} />
                     </Form.Item>
                     <Form.Item label="Email">
-                        <Input onChange={e => setEmail(e.target.value)} />
+                        <Input onChange={e => setEmail(e.target.value)} value={email} />
                     </Form.Item>
                     <Form.Item label="Phone">
                         <Input onChange={e => setPhone(e.target.value)} />

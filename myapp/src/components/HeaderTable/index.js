@@ -46,7 +46,7 @@ const HeaderTable = () => {
                     >
                         <Row type="flex" >
 
-                            <ModalCreate />
+                            <ModalCreate isEdit={false} />
                         </Row>
                     </Col>
 
