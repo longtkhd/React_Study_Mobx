@@ -21,13 +21,15 @@ class LoginStore {
     login = async (email, password) => {
 
         try {
+            const config = {
+                method: 'post',
+                url: `${BASE_URL}/user/login`,
+                data: { email, password }
 
-            const res = await axios.post(`${BASE_URL}/user/login`, {
+            }
 
-                email: email,
-                password: password
+            const res = await axios(config)
 
-            })
             if (res) {
                 localStorage.setItem('token', res.data.token);
                 localStorage.setItem('isAuthenticated', true)

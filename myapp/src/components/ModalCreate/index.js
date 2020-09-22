@@ -3,8 +3,21 @@ import React, { useEffect, useState } from 'react';
 import { Button, Modal, Form, Input, Select, DatePicker, Switch, Upload } from 'antd'
 import { UploadOutlined } from '@ant-design/icons';
 
+import { observer, inject } from 'mobx-react'
 
-const ModalCreate = () => {
+
+const ModalCreate = ({ MemberStore }) => {
+    const [fullName, setFullName] = useState('');
+    const [email, setEmail] = useState('');
+    const [phone, setPhone] = useState('');
+    const [address, setAddress] = useState('');
+    const [studentCode, setStudenCode] = useState('');
+    const [role, setRole] = useState('');
+    const [gender, setGender] = useState('');
+    const [dob, setDob] = useState('');
+
+
+
     const [ModalText, setModalText] = useState('')
     const [visible, setVisible] = useState(false)
     const [confirmLoading, setConfirmLoading] = useState(false)
@@ -24,6 +37,19 @@ const ModalCreate = () => {
     const handleOk = () => {
         setModalText('The modal will be closed after two seconds');
         setConfirmLoading(true)
+        const data = {
+            fullName: fullName,
+            email: email,
+            phone: phone,
+            address: address,
+            studentCode: studentCode,
+            role: role,
+            gender: gender,
+            dob: dob
+        }
+
+        MemberStore.CreateUser(data);
+        // console.log(MemberStore)
 
         setTimeout(() => {
             setVisible(false);
@@ -55,28 +81,29 @@ const ModalCreate = () => {
                     layout="horizontal"
                 >
                     <Form.Item label="FullName">
-                        <Input />
+                        <Input onChange={e => setFullName(e.target.value)} />
                     </Form.Item>
                     <Form.Item label="Email">
-                        <Input />
+                        <Input onChange={e => setEmail(e.target.value)} />
                     </Form.Item>
                     <Form.Item label="Phone">
-                        <Input />
+                        <Input onChange={e => setPhone(e.target.value)} />
                     </Form.Item>
                     <Form.Item label="Address">
-                        <Input />
+                        <Input onChange={e => setAddress(e.target.value)} />
                     </Form.Item>
-                    <Form.Item label="StudenCode">
-                        <Input />
+                    <Form.Item label="studentCode">
+                        <Input onChange={e => setStudenCode(e.target.value)} />
                     </Form.Item>
                     <Form.Item label="Role">
-                        <Select>
+                        <Select onChange={e => setRole(e)}>
+
                             <Select.Option value="5f65abd9ad8cdf07d008418b">Admin</Select.Option>
                             <Select.Option value="5f65abd9ad8cdf07d008418c">User</Select.Option>
                         </Select>
                     </Form.Item>
                     <Form.Item label="Gender">
-                        <Select>
+                        <Select onChange={e => setGender(e)}>
                             <Select.Option value="male">Nam</Select.Option>
                             <Select.Option value="female">Nữ</Select.Option>
                         </Select>
@@ -84,7 +111,7 @@ const ModalCreate = () => {
 
 
                     <Form.Item label="DatePicker">
-                        <DatePicker />
+                        <DatePicker onChange={e => setDob(e._d)} />
                     </Form.Item>
 
                     <Form.Item label="IsActive">
@@ -113,6 +140,5 @@ const ModalCreate = () => {
 
 
 
-
-export default ModalCreate;
+export default inject('MemberStore')(observer(ModalCreate));
 

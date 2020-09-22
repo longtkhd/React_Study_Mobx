@@ -32,12 +32,7 @@ const Login = ({ LoginStore }) => {
 
     useEffect(() => {
         const isAuth = localStorage.getItem('isAuthenticated');
-        console.log(isAuth)
-
-
-
         if (isAuth) {
-
             history.push('/');
         }
 
@@ -50,7 +45,6 @@ const Login = ({ LoginStore }) => {
     const onFinish = values => {
         console.log('Success:', values);
         LoginStore.login(email, password).then(() => history.push('/admin'))
-        // loginStore.login()
     };
 
     const onFinishFailed = errorInfo => {
@@ -58,14 +52,9 @@ const Login = ({ LoginStore }) => {
     };
     const handleChangeEmail = e => {
         setEmail(e.target.value);
-
-        // loginStore.setUsername(e.target.value);
-
     }
     const handleChangePassword = e => {
         setPassword(e.target.value)
-        // loginStore.setPassword(e.target.value)
-
     }
 
 

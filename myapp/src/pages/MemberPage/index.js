@@ -43,9 +43,9 @@ const Member = ({ MemberStore }) => {
             key: 'address',
         },
         {
-            title: 'schoolYear',
-            dataIndex: 'schoolYear',
-            key: 'address',
+            title: 'studenCode',
+            dataIndex: 'studentCode',
+            key: 'studentCode',
         },
         {
             title: 'isActive',
@@ -66,7 +66,7 @@ const Member = ({ MemberStore }) => {
             key: 'action',
             render: (text, record) => (
                 <Space size="middle">
-                    <a>Invite </a>
+                    <a>Profile </a>
                     <a>Delete</a>
                 </Space>
             ),
