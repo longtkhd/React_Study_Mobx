@@ -12,16 +12,19 @@ const { confirm } = Modal
 
 
 const Member = ({ MemberStore, ...props }) => {
+    // const [isEdit, setIsEdit] = useState('')
     const handleMenuClick = (record, e) => {
         // const { onDeleteItem, onEditItem, i18n } = this.props
 
-        if (e.key === '1') {
-            // setEditData(record);
+        // if (e.key === '1') {
+        //     setIsEdit(true)
+        //     // setEditData(record);
 
 
-            //   onEditItem(record)
-            console.log(record)
-        } else if (e.key === '2') {
+        //     //   onEditItem(record)
+        //     console.log(record)
+        // } else
+        if (e.key === '2') {
             confirm({
                 title: `Are you sure delete this record?`,
                 onOk() {

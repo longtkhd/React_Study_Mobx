@@ -19,6 +19,7 @@
     "less-loader": "^7.0.1",
     "mobx": "^5.15.6",
     "mobx-react": "^6.3.0",
+    "moment": "^2.29.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-mobx": "^0.0.4",

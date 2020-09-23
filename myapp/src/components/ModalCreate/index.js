@@ -2,6 +2,7 @@ import { set } from 'mobx';
 import React, { useEffect, useState } from 'react';
 import { Button, Modal, Form, Input, Select, DatePicker, Switch, Upload } from 'antd'
 import { UploadOutlined } from '@ant-design/icons';
+import moment from 'moment'
 
 import { observer, inject } from 'mobx-react'
 
@@ -19,18 +20,22 @@ const ModalCreate = ({ MemberStore, ...props }) => {
 
     useEffect(() => {
 
+
         if (props.isEdit) {
 
-
+            const d = props.EditData.dob;
             setFullName(props.EditData.fullName);
             setEmail(props.EditData.email);
             setPhone(props.EditData.phone);
             setAddress(props.EditData.address);
             setStudenCode(props.EditData.studentCode);
             setGender(props.EditData.gender);
-            setDob(props.EditData.dob);
+            setDob(moment(d));
             setRole(props.EditData.role)
-            console.log(props.EditData.dob)
+
+
+
+
         }
 
     }, [])
@@ -69,9 +74,22 @@ const ModalCreate = ({ MemberStore, ...props }) => {
             gender: gender,
             dob: dob
         }
+        const dataEdit = {
+            _id: props.EditData._id,
+            fullName: fullName,
+            email: email,
+            phone: phone,
+            address: address,
+            studentCode: studentCode,
+            role: role,
+            gender: gender,
+            dob: dob
+        }
 
-        MemberStore.CreateUser(data);
-        // console.log(MemberStore)
+
+        { props.isEdit ? MemberStore.UpdateUser(dataEdit) : MemberStore.CreateUser(data) }
+
+        // MemberStore.CreateUser(data);
 
         setTimeout(() => {
             setVisible(false);
@@ -133,7 +151,12 @@ const ModalCreate = ({ MemberStore, ...props }) => {
 
 
                     <Form.Item label="DatePicker">
-                        <DatePicker onChange={e => setDob(e._d)} />
+                        <DatePicker
+                            value={dob}
+                            onChange={e => setDob(e)}
+                            format="YYYY/MM/DD"
+
+                        />
                     </Form.Item>
 
                     <Form.Item label="IsActive">

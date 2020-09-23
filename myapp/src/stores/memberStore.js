@@ -28,7 +28,6 @@ class MemberStore {
             // console.log(toJS(this.users)
             if (res) {
                 this.users = res.data.users;
-                console.log(toJS(this.users))
             }
 
 
@@ -66,8 +65,41 @@ class MemberStore {
             );
             if (res) {
                 this.getAllUser();
-                console.log(res)
+                // console.log(res)
             }
+        } catch (e) {
+            MemberStore.error = 'Oops , Something is wrong !!!'
+
+        }
+    }
+
+    UpdateUser = async (data) => {
+        console.log('updateData', data)
+        try {
+            const formData = new FormData();
+            formData.append('fullName', data.fullName);
+            formData.append('email', data.email);
+            formData.append('role', data.role);
+            formData.append('studentCode', data.studentCode);
+            formData.append('phone', data.phone);
+            formData.append('address', data.address);
+            formData.append('dob', data.dob);
+            formData.append('gender', data.gender);
+
+            const config = {
+                method: 'patch',
+                url: `${BASE_URL}/user/update/${data._id}`,
+                headers: {
+                    "x-access-token": `${localStorage.getItem('token')}`,
+                },
+                data: formData
+            }
+            const res = await axios(config);
+            if (res) {
+                this.getAllUser();
+                console.log(res);
+            }
+
         } catch (e) {
             MemberStore.error = 'Oops , Something is wrong !!!'
 
@@ -83,7 +115,8 @@ decorate(MemberStore, {
     isEdit: observable,
     getAllUser: action,
     CreateUser: action,
-    setIsEdit: action
+    setIsEdit: action,
+    UpdateUser: action,
 })
 
 export default new MemberStore()
