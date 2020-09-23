@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Table, Tag, Space, Button, Row, Col, Form, Modal } from 'antd'
 import { observer, inject } from 'mobx-react'
 import { toJS } from 'mobx';
@@ -9,13 +9,18 @@ const { confirm } = Modal
 
 
 
+
+
 const Member = ({ MemberStore, ...props }) => {
     const handleMenuClick = (record, e) => {
         // const { onDeleteItem, onEditItem, i18n } = this.props
 
         if (e.key === '1') {
+            // setEditData(record);
+
+
             //   onEditItem(record)
-            console.log('update')
+            console.log(record)
         } else if (e.key === '2') {
             confirm({
                 title: `Are you sure delete this record?`,
@@ -103,9 +108,10 @@ const Member = ({ MemberStore, ...props }) => {
                     <DropOption
                         onMenuClick={e => handleMenuClick(record, e)}
                         menuOptions={[
-                            { key: '1', name: `Update` },
+                            { key: '1', name: <ModalCreate EditData={record} isEdit={true} /> },
                             { key: '2', name: `Delete` },
-                        ]}
+                        ]
+                        }
                     />
                 )
             },

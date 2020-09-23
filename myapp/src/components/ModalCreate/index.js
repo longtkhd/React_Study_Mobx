@@ -17,21 +17,23 @@ const ModalCreate = ({ MemberStore, ...props }) => {
     const [dob, setDob] = useState('');
 
 
-    // useEffect(() => {
+    useEffect(() => {
 
-    //     if (props.isEdit) {
+        if (props.isEdit) {
 
 
-    //         setFullName(props.EditData.fullName);
-    //         setEmail(props.EditData.email);
-    //         setPhone(props.EditData.phone);
-    //         setAddress(props.EditData.address);
-    //         setStudenCode(props.EditData.studentCode);
-    //         setGender(props.EditData.gender);
-    //         setDob(props.EditData.dob);
-    //     }
+            setFullName(props.EditData.fullName);
+            setEmail(props.EditData.email);
+            setPhone(props.EditData.phone);
+            setAddress(props.EditData.address);
+            setStudenCode(props.EditData.studentCode);
+            setGender(props.EditData.gender);
+            setDob(props.EditData.dob);
+            setRole(props.EditData.role)
+            console.log(props.EditData.dob)
+        }
 
-    // }, [])
+    }, [])
 
 
 
@@ -86,8 +88,8 @@ const ModalCreate = ({ MemberStore, ...props }) => {
     return (
         <div>
             <Button type="ghost" onClick={showModal} >
-                Create
-        </Button>
+                {props.isEdit ? 'Edit' : 'Create'}
+            </Button>
             <Modal
                 title="New User"
                 visible={visible}
@@ -107,23 +109,23 @@ const ModalCreate = ({ MemberStore, ...props }) => {
                         <Input onChange={e => setEmail(e.target.value)} value={email} />
                     </Form.Item>
                     <Form.Item label="Phone">
-                        <Input onChange={e => setPhone(e.target.value)} />
+                        <Input onChange={e => setPhone(e.target.value)} value={phone} />
                     </Form.Item>
                     <Form.Item label="Address">
-                        <Input onChange={e => setAddress(e.target.value)} />
+                        <Input onChange={e => setAddress(e.target.value)} value={address} />
                     </Form.Item>
                     <Form.Item label="studentCode">
-                        <Input onChange={e => setStudenCode(e.target.value)} />
+                        <Input onChange={e => setStudenCode(e.target.value)} value={studentCode} />
                     </Form.Item>
                     <Form.Item label="Role">
-                        <Select onChange={e => setRole(e)}>
+                        <Select onChange={e => setRole(e)} value={role} >
 
                             <Select.Option value="5f65abd9ad8cdf07d008418b">Admin</Select.Option>
                             <Select.Option value="5f65abd9ad8cdf07d008418c">User</Select.Option>
                         </Select>
                     </Form.Item>
-                    <Form.Item label="Gender">
-                        <Select onChange={e => setGender(e)}>
+                    <Form.Item label="Gender" >
+                        <Select onChange={e => setGender(e)} value={gender}>
                             <Select.Option value="male">Nam</Select.Option>
                             <Select.Option value="female">Nữ</Select.Option>
                         </Select>
