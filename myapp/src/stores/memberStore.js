@@ -73,6 +73,29 @@ class MemberStore {
         }
     }
 
+    DeleteUser = async (data) => {
+        try {
+            const config = {
+                method: 'delete',
+                url: `${BASE_URL}/user/delete/${data._id}`,
+                headers: {
+                    "x-access-token": `${localStorage.getItem('token')}`,
+                },
+
+            }
+
+            const res = await axios(config);
+            if (res) {
+                this.getAllUser();
+            }
+
+
+        } catch (e) {
+            MemberStore.error = 'Oops , Something is wrong !!!'
+
+        }
+    }
+
     UpdateUser = async (data) => {
         console.log('updateData', data)
         try {
@@ -104,6 +127,10 @@ class MemberStore {
             MemberStore.error = 'Oops , Something is wrong !!!'
 
         }
+
+
+
+
     }
 }
 
@@ -117,6 +144,7 @@ decorate(MemberStore, {
     CreateUser: action,
     setIsEdit: action,
     UpdateUser: action,
+    DeleteUser: action
 })
 
 export default new MemberStore()

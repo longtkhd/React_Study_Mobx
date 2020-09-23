@@ -29,7 +29,7 @@ const Member = ({ MemberStore, ...props }) => {
                 title: `Are you sure delete this record?`,
                 onOk() {
                     // onDeleteItem(record.id)
-                    console.log(record._id)
+                    MemberStore.DeleteUser(record);
                 },
             })
         }
@@ -112,7 +112,11 @@ const Member = ({ MemberStore, ...props }) => {
                         onMenuClick={e => handleMenuClick(record, e)}
                         menuOptions={[
                             { key: '1', name: <ModalCreate EditData={record} isEdit={true} /> },
-                            { key: '2', name: `Delete` },
+                            {
+                                key: '2', name: <Button type="danger"  >
+                                    Delete
+                        </Button>
+                            },
                         ]
                         }
                     />
